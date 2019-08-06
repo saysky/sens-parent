@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/sens-blog/sens-blog.iml" filepath="$PROJECT_DIR$/sens-blog/sens-blog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sens-common/sens-common.iml" filepath="$PROJECT_DIR$/sens-common/sens-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sens-forum/sens-forum.iml" filepath="$PROJECT_DIR$/sens-forum/sens-forum.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sens-mall/sens-mall.iml" filepath="$PROJECT_DIR$/sens-mall/sens-mall.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sens-music/sens-music.iml" filepath="$PROJECT_DIR$/sens-music/sens-music.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sens-parent.iml" filepath="$PROJECT_DIR$/sens-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sens-user/sens-user.iml" filepath="$PROJECT_DIR$/sens-user/sens-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sens-user/sens-user-api/sens-user-api.iml" filepath="$PROJECT_DIR$/sens-user/sens-user-api/sens-user-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sens-user/sens-user-core/sens-user-core.iml" filepath="$PROJECT_DIR$/sens-user/sens-user-core/sens-user-core.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="sens-forum" />
+        <module name="sens-music" />
+        <module name="sens-user" />
+        <module name="sens-blog" />
+        <module name="sens-common" />
+        <module name="sens-mall" />
+        <module name="sens-user-core" />
+        <module name="sens-user-api" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="sens-blog" target="1.8" />
+      <module name="sens-common" target="1.8" />
+      <module name="sens-forum" target="1.8" />
+      <module name="sens-mall" target="1.8" />
+      <module name="sens-music" target="1.8" />
+      <module name="sens-parent" target="1.8" />
+      <module name="sens-user" target="1.8" />
+      <module name="sens-user-api" target="1.8" />
+      <module name="sens-user-core" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="sens-blog" options="-parameters" />
+      <module name="sens-common" options="-parameters" />
+      <module name="sens-forum" options="-parameters" />
+      <module name="sens-mall" options="-parameters" />
+      <module name="sens-music" options="-parameters" />
+      <module name="sens-parent" options="-parameters" />
+      <module name="sens-user" options="-parameters" />
+      <module name="sens-user-api" options="-parameters" />
+      <module name="sens-user-core" options="-parameters" />
+    </option>
+  </component>
+</project>
