@@ -1,7 +1,8 @@
 target/
 logs/
 sens-logs/
-!.mvn/wrapper/maven-wrapper.jar
+.idea
+.mvn
 
 ### STS ###
 .apt_generated
@@ -35,7 +36,3 @@ nbdist/
 *.project
 *.factorypath
 
-
-### hidden
-resources/
-*.sql
