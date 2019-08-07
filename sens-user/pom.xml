@@ -12,6 +12,7 @@
     <artifactId>sens-user</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>sens-user</name>
+    <packaging>pom</packaging>
 
     <description>Demo project for Spring Boot</description>
 
@@ -21,13 +22,5 @@
         <module>sens-user-core</module>
     </modules>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

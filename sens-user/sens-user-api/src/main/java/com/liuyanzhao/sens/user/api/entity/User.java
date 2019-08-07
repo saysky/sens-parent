@@ -1,13 +1,15 @@
 package com.liuyanzhao.sens.user.api.entity;
 
 import com.liuyanzhao.sens.common.constant.CommonConstant;
+import com.liuyanzhao.sens.common.entity.BaseEntity;
+import lombok.Data;
 
 /**
  * @author 言曌
  * @date 2019-08-07 00:37
  */
-
-public class User {
+@Data
+public class User extends BaseEntity {
 
     /**
      * 用户名
