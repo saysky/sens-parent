@@ -1,14 +1,17 @@
 package com.liuyanzhao.sens.user.api.entity;
 
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.liuyanzhao.sens.common.constant.CommonConstant;
 import com.liuyanzhao.sens.common.entity.BaseEntity;
 import lombok.Data;
 
 /**
+ * 用户
  * @author 言曌
  * @date 2019-08-07 00:37
  */
 @Data
+@TableName("t_user")
 public class User extends BaseEntity {
 
     /**
@@ -24,7 +27,7 @@ public class User extends BaseEntity {
     /**
      * 显示名
      */
-    private String nickName;
+    private String nickname;
 
     /**
      * 手机
@@ -37,24 +40,9 @@ public class User extends BaseEntity {
     private String email;
 
     /**
-     * 省市县地址
-     */
-    private String address;
-
-    /**
-     * 街道地址
-     */
-    private String street;
-
-    /**
-     * 性别
+     * 性别: 男1/女0
      */
     private String sex;
-
-    /**
-     * 密码强度
-     */
-    private String passStrength;
 
     /**
      * 用户头像
@@ -62,7 +50,7 @@ public class User extends BaseEntity {
     private String avatar = CommonConstant.USER_DEFAULT_AVATAR;
 
     /**
-     * 用户类型：普通用户/管理员用户。默认普通用户
+     * 用户类型：普通用户0/管理员用户1。默认普通用户
      */
     private Integer type = CommonConstant.USER_TYPE_NORMAL;
 

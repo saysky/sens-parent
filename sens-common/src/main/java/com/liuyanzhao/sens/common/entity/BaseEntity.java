@@ -2,6 +2,7 @@ package com.liuyanzhao.sens.common.entity;
 
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
+import com.liuyanzhao.sens.common.constant.CommonConstant;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -19,6 +20,11 @@ public class BaseEntity implements Serializable {
      */
     @TableId(type = IdType.AUTO)
     private Long id;
+
+    /**
+     * 删除状态：1删除，0未删除
+     */
+    private Integer delFlag = CommonConstant.STATUS_NORMAL;
 
     /**
      * 创建人用户名

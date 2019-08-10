@@ -1,5 +1,6 @@
 package com.liuyanzhao.sens.user.api.service;
 
+import com.liuyanzhao.sens.common.vo.Response;
 import com.liuyanzhao.sens.user.api.entity.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public interface UserService {
      * @return
      */
     @GetMapping("/user/{id}")
-    User getUserById(@PathVariable("id") Long id);
+    Response<User> getUserById(@PathVariable("id") Long id);
 
     /**
      * 根据username查询
@@ -28,7 +29,7 @@ public interface UserService {
      * @return
      */
     @GetMapping("/user/findByUsername")
-    User getUserByUsername(@RequestParam("username") String username);
+    Response<User> getUserByUsername(@RequestParam("username") String username);
 
     /**
      * 根据用户ID删除用户
@@ -38,7 +39,7 @@ public interface UserService {
      * @return 是否删除成功
      */
     @DeleteMapping("/user/{id}")
-    Boolean deleteUserById(@PathVariable("id") Integer id);
+    Response<Boolean> deleteUserById(@PathVariable("id") Integer id);
 
     /**
      * 更新用户
@@ -47,7 +48,7 @@ public interface UserService {
      * @return 是否删除成功
      */
     @PutMapping("/user")
-    Boolean updateUser(@RequestBody User user);
+    Response<Boolean> updateUser(@RequestBody User user);
 
     /**
      * 添加新用户
@@ -56,6 +57,6 @@ public interface UserService {
      * @return 是否删除成功
      */
     @PostMapping("/user")
-    Boolean insertUser(@RequestBody User user);
+    Response<Boolean> insertUser(@RequestBody User user);
 
 }

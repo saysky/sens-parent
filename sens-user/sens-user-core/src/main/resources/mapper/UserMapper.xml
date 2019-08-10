@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liuyanzhao.sens.user.core.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.liuyanzhao.sens.user.api.entity.User">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="nickname" property="nickname"/>
+        <result column="mobile" property="mobile"/>
+        <result column="email" property="email"/>
+        <result column="sex" property="sex"/>
+        <result column="type" property="type"/>
+        <result column="status" property="status"/>
+        <result column="description" property="description"/>
+        <result column="del_flag" property="delFlag"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <!--  del_flag 1已删除,0未删除  -->
+    <sql id="tb">`t_user`</sql>
+
+    <sql id="all_columns">
+        id, username, password, nickname, mobile, email, sex, type, status, description, del_flag, create_by, create_time, update_by, update_time
+    </sql>
+
+    <sql id="all_values">
+        #{id}, #{username}, #{password}, #{nickname}, #{mobile}, #{email}, #{sex}, #{type}, #{status}, #{description}, #{delFlag}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}
+    </sql>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT
+            <include refid="all_columns"/>
+        FROM
+            <include refid="tb"/>
+        WHERE del_flag = 0
+    </select>
+
+    <select id="findByUsername" resultMap="BaseResultMap">
+        SELECT
+            <include refid="all_columns"/>
+        FROM
+            <include refid="tb"/>
+        WHERE username = #{value} AND del_flag = 0
+    </select>
+
+    <select id="findByMobile" resultMap="BaseResultMap">
+        SELECT
+            <include refid="all_columns"/>
+        FROM
+            <include refid="tb"/>
+        WHERE mobile = #{value} AND del_flag = 0
+    </select>
+
+    <select id="findByEmail" resultMap="BaseResultMap">
+        SELECT
+            <include refid="all_columns"/>
+        FROM
+            <include refid="tb"/>
+        WHERE email = #{value} AND del_flag = 0
+    </select>
+
+    <select id="findByUsernameLikeAndStatus" resultMap="BaseResultMap">
+        SELECT
+            <include refid="all_columns"/>
+        FROM
+            <include refid="tb"/>
+        WHERE username LIKE CONCAT('%', #{username} ,'%') AND
+        status = #{status} AND del_flag = 0
+    </select>
+
+</mapper>

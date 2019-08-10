@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liuyanzhao.sens.user.core.mapper.RoleMapper">
+    <resultMap id="BaseResultMap" type="com.liuyanzhao.sens.user.api.entity.Role">
+        <id column="id" property="id"/>
+        <result column="default_role" property="defaultRole"/>
+        <result column="data_type" property="dataType"/>
+        <result column="description" property="description"/>
+        <result column="name" property="name"/>
+        <result column="del_flag" property="delFlag"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <!--  del_flag 1已删除,0未删除  -->
+
+    <sql id="tb">`t_role`</sql>
+
+    <sql id="all_columns">
+        id, default_role, data_type, description, name, del_flag, create_by, create_time, update_by, update_time
+    </sql>
+
+    <sql id="all_values">
+        #{id}, #{defaultRole}, #{dataType}, #{description}, #{name}, #{delFlag}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}
+    </sql>
+
+    <select id="findByDefaultRole" resultMap="BaseResultMap">
+        SELECT
+            <include refid="all_columns"/>
+        FROM
+            <include refid="tb"/>
+        WHERE default_role = #{value} AND del_flag = 0
+    </select>
+
+</mapper>
