@@ -1,6 +1,7 @@
 package com.liuyanzhao.sens.user.core.mapper;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.liuyanzhao.sens.user.api.entity.UserRole;
 import org.apache.ibatis.annotations.Mapper;
 

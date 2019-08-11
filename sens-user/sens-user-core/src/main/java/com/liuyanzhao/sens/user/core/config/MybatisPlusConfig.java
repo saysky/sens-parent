@@ -1,7 +1,9 @@
 package com.liuyanzhao.sens.user.core.config;
 
-import com.baomidou.mybatisplus.plugins.PaginationInterceptor;
-import com.baomidou.mybatisplus.plugins.PerformanceInterceptor;
+import com.baomidou.mybatisplus.core.injector.ISqlInjector;
+import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
+import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -29,13 +31,23 @@ public class MybatisPlusConfig {
     }
 
     /**
-     * mybatis-plus分页插件
+     * 分页插件
      */
     @Bean
     public PaginationInterceptor paginationInterceptor() {
-        return new PaginationInterceptor();
+        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
+        // paginationInterceptor.setLimit(你的最大单页限制数量，默认 500 条，小于 0 如 -1 不受限制);
+         paginationInterceptor.setLimit(100);
+        return paginationInterceptor;
     }
 
-
+    /**
+     * sql注入器  逻辑删除插件
+     * @return
+     */
+    @Bean
+    public ISqlInjector iSqlInjector(){
+        return new LogicSqlInjector();
+    }
 
 }

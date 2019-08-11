@@ -33,7 +33,7 @@ spring:
     timeout: 5000
 # mybatis-plus
 mybatis-plus:
-  mapper-locations: classpath*:/mapper/**Mapper.xml
+  mapper-locations: classpath:/mapper/*Mapper.xml
   #实体扫描，多个package用逗号或者分号分隔
   typeAliasesPackage: com.liuyanzhao.sens.user.api.entity
   global-config:
@@ -43,14 +43,23 @@ mybatis-plus:
     field-strategy: 2
     #驼峰下划线转换
     db-column-underline: true
+    #mp2.3+ 全局表前缀 mp_
+    #table-prefix: mp_
     #刷新mapper 调试神器
-    refresh-mapper: true
+    #refresh-mapper: true
+    #数据库大写下划线转换
+    #capital-mode: true
+    # Sequence序列接口实现类配置
+#    key-generator: com.baomidou.mybatisplus.incrementer.OracleKeyGenerator
     #逻辑删除配置（下面3个配置）
-    logic-delete-value: 0
-    logic-not-delete-value: 1
+    logic-delete-value: 1
+    logic-not-delete-value: 0
   configuration:
+    #配置返回数据库(column下划线命名&&返回java实体是驼峰命名)，自动匹配无需as（没开启这个，SQL需要写as： select user_id as userId）
     map-underscore-to-camel-case: true
-    cache-enabled: true
+    cache-enabled: false
+    #配置JdbcTypeForNull, oracle数据库必须配置
+    jdbc-type-for-null: 'null'
 
 # 日志
 logging:

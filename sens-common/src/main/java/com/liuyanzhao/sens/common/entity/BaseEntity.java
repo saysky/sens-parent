@@ -1,7 +1,9 @@
 package com.liuyanzhao.sens.common.entity;
 
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.enums.IdType;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.liuyanzhao.sens.common.constant.CommonConstant;
 import lombok.Data;
 
@@ -24,6 +26,8 @@ public class BaseEntity implements Serializable {
     /**
      * 删除状态：1删除，0未删除
      */
+    @TableField(value = "del_flag")
+    @TableLogic
     private Integer delFlag = CommonConstant.STATUS_NORMAL;
 
     /**

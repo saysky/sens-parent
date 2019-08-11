@@ -30,45 +30,4 @@
         #{id}, #{username}, #{password}, #{nickname}, #{mobile}, #{email}, #{sex}, #{type}, #{status}, #{description}, #{delFlag}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}
     </sql>
 
-    <select id="findAll" resultMap="BaseResultMap">
-        SELECT
-            <include refid="all_columns"/>
-        FROM
-            <include refid="tb"/>
-        WHERE del_flag = 0
-    </select>
-
-    <select id="findByUsername" resultMap="BaseResultMap">
-        SELECT
-            <include refid="all_columns"/>
-        FROM
-            <include refid="tb"/>
-        WHERE username = #{value} AND del_flag = 0
-    </select>
-
-    <select id="findByMobile" resultMap="BaseResultMap">
-        SELECT
-            <include refid="all_columns"/>
-        FROM
-            <include refid="tb"/>
-        WHERE mobile = #{value} AND del_flag = 0
-    </select>
-
-    <select id="findByEmail" resultMap="BaseResultMap">
-        SELECT
-            <include refid="all_columns"/>
-        FROM
-            <include refid="tb"/>
-        WHERE email = #{value} AND del_flag = 0
-    </select>
-
-    <select id="findByUsernameLikeAndStatus" resultMap="BaseResultMap">
-        SELECT
-            <include refid="all_columns"/>
-        FROM
-            <include refid="tb"/>
-        WHERE username LIKE CONCAT('%', #{username} ,'%') AND
-        status = #{status} AND del_flag = 0
-    </select>
-
 </mapper>
