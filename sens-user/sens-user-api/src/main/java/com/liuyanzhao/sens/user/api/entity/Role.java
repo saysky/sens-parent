@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * 角色
+ *
  * @author 言曌
  * @date 2019-08-10 15:27
  */
@@ -40,7 +41,7 @@ public class Role extends BaseEntity {
     /**
      * 拥有权限
      */
-    @TableField(exist=false)
+    @TableField(exist = false)
     private List<RolePermission> permissions;
 
 }

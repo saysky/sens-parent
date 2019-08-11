@@ -3,6 +3,7 @@ package com.liuyanzhao.sens.user.api.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.liuyanzhao.sens.common.vo.Response;
+import com.liuyanzhao.sens.common.vo.SearchVo;
 import com.liuyanzhao.sens.user.api.entity.User;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -86,6 +87,6 @@ public interface UserService {
      * @return
      */
     @GetMapping("/user/findByCondition")
-    Response<IPage<User>> findByCondition(User user, Page<User> page);
+    Response<IPage<User>> findByCondition(User user, SearchVo searchVo, Page<User> page);
 
 }

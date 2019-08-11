@@ -1,15 +1,19 @@
 package com.liuyanzhao.sens.user.core.service;
 
+import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.liuyanzhao.sens.common.vo.Response;
+import com.liuyanzhao.sens.common.vo.SearchVo;
 import com.liuyanzhao.sens.user.api.entity.User;
 import com.liuyanzhao.sens.user.api.service.UserService;
 import com.liuyanzhao.sens.user.core.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Date;
 
 /**
  * @author 言曌
@@ -72,7 +76,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Response<IPage<User>> findByCondition(User user, Page<User> page) {
+    public Response<IPage<User>> findByCondition(User user, SearchVo searchVo, Page<User> page) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         if(user != null) {
             if(user.getUsername() != null) {
@@ -95,6 +99,13 @@ public class UserServiceImpl implements UserService {
             }
             if(user.getMobile() != null) {
                 queryWrapper.eq("mobile", user.getMobile());
+            }
+        }
+        if(searchVo != null) {
+            if(searchVo.getStartDate() != null && searchVo.getEndDate() != null) {
+                Date start = DateUtil.parse(searchVo.getStartDate());
+                Date end = DateUtil.parse(searchVo.getEndDate());
+                queryWrapper.between("create_time", start, end);
             }
         }
         IPage<User> userIPage = userMapper.selectPage(page, queryWrapper);

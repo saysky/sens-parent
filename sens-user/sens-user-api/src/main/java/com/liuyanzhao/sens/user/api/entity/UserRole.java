@@ -7,6 +7,7 @@ import lombok.Data;
 
 /**
  * 用户角色
+ *
  * @author 言曌
  * @date 2019-08-10 15:29
  */
@@ -27,6 +28,6 @@ public class UserRole extends BaseEntity {
     /**
      * 角色名
      */
-    @TableField(exist=false)
+    @TableField(exist = false)
     private String roleName;
 }
