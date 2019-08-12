@@ -45,19 +45,19 @@ public class User extends BaseEntity {
     private String sex;
 
     /**
-     * 用户头像
+     * 用户头像，默认=CommonConstant.USER_DEFAULT_AVATAR
      */
-    private String avatar = CommonConstant.USER_DEFAULT_AVATAR;
+    private String avatar;
 
     /**
-     * 用户类型：普通用户0/管理员用户1。默认普通用户
+     * 用户类型：普通用户0/管理员用户1。默认普通用户0=CommonConstant.USER_TYPE_NORMAL
      */
-    private Integer type = CommonConstant.USER_TYPE_NORMAL;
+    private Integer type;
 
     /**
-     * 状态 默认0正常 -1拉黑")
+     * 状态 正常0/拉黑-1。 默认正常0=CommonConstant.USER_STATUS_NORMAL
      */
-    private Integer status = CommonConstant.USER_STATUS_NORMAL;
+    private Integer status;
 
     /**
      * 描述

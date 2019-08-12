@@ -1,11 +1,13 @@
 package com.liuyanzhao.sens.common.vo;
 
+
+import java.io.Serializable;
+
 /**
  * @author 言曌
  * @date 2018/9/2 下午8:34
  */
-
-public class Response<T> {
+public class Response<T> implements Serializable {
 
     private Integer code = 200;
 
@@ -70,4 +72,13 @@ public class Response<T> {
     public void setCode(Integer code) {
         this.code = code;
     }
+
+    public Boolean isSuccess() {
+        return this.code == 200;
+    }
+
+    public Boolean isError() {
+        return !isSuccess();
+    }
+
 }

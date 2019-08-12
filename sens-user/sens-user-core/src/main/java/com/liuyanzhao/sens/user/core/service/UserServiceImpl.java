@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.liuyanzhao.sens.common.vo.Response;
 import com.liuyanzhao.sens.common.vo.SearchVo;
+import com.liuyanzhao.sens.user.api.dto.UserCondition;
 import com.liuyanzhao.sens.user.api.entity.User;
 import com.liuyanzhao.sens.user.api.service.UserService;
 import com.liuyanzhao.sens.user.core.mapper.UserMapper;
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public Response<Boolean> deleteUserById(Integer id) {
+    public Response<Boolean> deleteUserById(Long id) {
         userMapper.deleteById(id);
         return Response.yes(true);
     }
@@ -76,39 +77,43 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Response<IPage<User>> findByCondition(User user, SearchVo searchVo, Page<User> page) {
+    public Response<Page<User>> findByCondition(UserCondition userCondition) {
+        User user = userCondition.getUser();
+        SearchVo searchVo = userCondition.getSearchVo();
+        Page page = userCondition.getPage();
+
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        if(user != null) {
-            if(user.getUsername() != null) {
+        if (user != null) {
+            if (user.getUsername() != null) {
                 queryWrapper.like("username", user.getUsername());
             }
-            if(user.getNickname() != null) {
+            if (user.getNickname() != null) {
                 queryWrapper.like("nickname", user.getNickname());
             }
-            if(user.getStatus() != null) {
+            if (user.getStatus() != null) {
                 queryWrapper.eq("status", user.getStatus());
             }
-            if(user.getType() != null) {
+            if (user.getType() != null) {
                 queryWrapper.eq("type", user.getType());
             }
-            if(user.getSex() != null) {
+            if (user.getSex() != null) {
                 queryWrapper.eq("sex", user.getSex());
             }
-            if(user.getEmail() != null) {
+            if (user.getEmail() != null) {
                 queryWrapper.eq("email", user.getEmail());
             }
-            if(user.getMobile() != null) {
+            if (user.getMobile() != null) {
                 queryWrapper.eq("mobile", user.getMobile());
             }
         }
-        if(searchVo != null) {
-            if(searchVo.getStartDate() != null && searchVo.getEndDate() != null) {
+        if (searchVo != null) {
+            if (searchVo.getStartDate() != null && searchVo.getEndDate() != null) {
                 Date start = DateUtil.parse(searchVo.getStartDate());
                 Date end = DateUtil.parse(searchVo.getEndDate());
                 queryWrapper.between("create_time", start, end);
             }
         }
-        IPage<User> userIPage = userMapper.selectPage(page, queryWrapper);
-        return Response.yes(userIPage);
+        Page<User> userPage = (Page<User>) userMapper.selectPage(page, queryWrapper);
+        return Response.yes(userPage);
     }
 }
