@@ -1,6 +1,9 @@
 package com.liuyanzhao.sens.user.api.service;
 
 import com.liuyanzhao.sens.user.api.entity.Permission;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -9,6 +12,7 @@ import java.util.List;
  * @author 言曌
  * @date 2019-08-12 12:53
  */
+@FeignClient(name = "sens-user-core")
 public interface PermissionService {
 
     /**
@@ -17,14 +21,16 @@ public interface PermissionService {
      * @param level
      * @return
      */
-    List<Permission> findByLevelOrderBySortOrder(Integer level);
+    @GetMapping("/permission/findByLevelOrderBySortOrder")
+    List<Permission> findByLevelOrderBySortOrder(@RequestParam("level") Integer level);
 
     /**
      * 通过parendId查找
      * @param parentId
      * @return
      */
-    List<Permission> findByParentIdOrderBySortOrder(String parentId);
+    @GetMapping("/permission/findByParentIdOrderBySortOrder")
+    List<Permission> findByParentIdOrderBySortOrder(@RequestParam("parentId") String parentId);
 
     /**
      * 通过类型和状态获取
@@ -32,19 +38,23 @@ public interface PermissionService {
      * @param status
      * @return
      */
-    List<Permission> findByTypeAndStatusOrderBySortOrder(Integer type, Integer status);
+    @GetMapping("/permission/findByTypeAndStatusOrderBySortOrder")
+    List<Permission> findByTypeAndStatusOrderBySortOrder(@RequestParam("type") Integer type,
+                                                         @RequestParam("status") Integer status);
 
     /**
      * 通过名称获取
      * @param title
      * @return
      */
-    List<Permission> findByTitle(String title);
+    @GetMapping("/permission/findByTitle")
+    List<Permission> findByTitle(@RequestParam("title") String title);
 
     /**
      * 模糊搜索
      * @param title
      * @return
      */
-    List<Permission> findByTitleLikeOrderBySortOrder(String title);
+    @GetMapping("/permission/findByTitleLikeOrderBySortOrder")
+    List<Permission> findByTitleLikeOrderBySortOrder(@RequestParam("title") String title);
 }
