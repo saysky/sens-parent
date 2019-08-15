@@ -51,4 +51,11 @@ public interface PermissionMapper extends BaseMapper<Permission> {
      * @return
      */
     List<Permission> findByTitleLikeOrderBySortOrder(String title);
+
+    /**
+     * 根据用户ID获得角色列表
+     * @param userId
+     * @return
+     */
+    List<Permission> findByUserId(Long userId);
 }

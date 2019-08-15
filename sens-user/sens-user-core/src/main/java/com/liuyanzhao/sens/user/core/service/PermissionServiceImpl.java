@@ -45,4 +45,9 @@ public class PermissionServiceImpl implements PermissionService {
     public List<Permission> findByTitleLikeOrderBySortOrder(String title) {
         return permissionMapper.findByTitleLikeOrderBySortOrder(title);
     }
+
+    @Override
+    public List<Permission> findByUserId(Long userId) {
+        return permissionMapper.findByUserId(userId);
+    }
 }

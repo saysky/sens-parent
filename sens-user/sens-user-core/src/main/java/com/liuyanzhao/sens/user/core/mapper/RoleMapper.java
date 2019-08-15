@@ -19,4 +19,11 @@ public interface RoleMapper extends BaseMapper<Role> {
      * @return
      */
     List<Role> findByDefaultRole(Boolean defaultRole);
+
+    /**
+     * 根据用户获得角色列表
+     * @param userId
+     * @return
+     */
+    List<Role> findByUserId(Long userId);
 }

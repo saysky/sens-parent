@@ -24,4 +24,9 @@ public class RoleServiceImpl implements RoleService {
     public List<Role> findByDefaultRole(Boolean defaultRole) {
         return roleMapper.findByDefaultRole(defaultRole);
     }
+
+    @Override
+    public List<Role> findByUserId(Long userId) {
+        return roleMapper.findByUserId(userId);
+    }
 }

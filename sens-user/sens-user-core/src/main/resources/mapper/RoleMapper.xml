@@ -28,10 +28,20 @@
 
     <select id="findByDefaultRole" resultMap="BaseResultMap">
         SELECT
-            <include refid="all_columns"/>
+        <include refid="all_columns"/>
         FROM
-            <include refid="tb"/>
+        <include refid="tb"/>
         WHERE default_role = #{value} AND del_flag = 0
+    </select>
+
+    <select id="findByUserId" resultMap="BaseResultMap">
+        SELECT
+            r.id id, name, r.data_type
+        FROM
+            t_user_role ur
+        LEFT JOIN t_role r
+        ON ur.role_id = r.id
+        WHERE user_Id = #{userId}
     </select>
 
 </mapper>

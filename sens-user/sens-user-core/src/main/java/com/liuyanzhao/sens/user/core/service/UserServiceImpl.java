@@ -2,19 +2,23 @@ package com.liuyanzhao.sens.user.core.service;
 
 import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.liuyanzhao.sens.common.vo.Response;
 import com.liuyanzhao.sens.common.vo.SearchVo;
 import com.liuyanzhao.sens.user.api.dto.UserCondition;
+import com.liuyanzhao.sens.user.api.entity.Permission;
+import com.liuyanzhao.sens.user.api.entity.Role;
 import com.liuyanzhao.sens.user.api.entity.User;
 import com.liuyanzhao.sens.user.api.service.UserService;
+import com.liuyanzhao.sens.user.core.mapper.PermissionMapper;
+import com.liuyanzhao.sens.user.core.mapper.RoleMapper;
 import com.liuyanzhao.sens.user.core.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author 言曌
@@ -27,28 +31,46 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private RoleMapper roleMapper;
+
+    @Autowired
+    private PermissionMapper permissionMapper;
+
     @Override
     public Response<User> getUserById(Long id) {
         User user = userMapper.selectById(id);
+        if(user == null) {
+            return Response.no("用户不存在！");
+        }
         return Response.yes(user);
     }
 
 
     @Override
     public Response<Boolean> deleteUserById(Long id) {
-        userMapper.deleteById(id);
+        int row = userMapper.deleteById(id);
+        if(row == 0) {
+            return Response.no("删除失败");
+        }
         return Response.yes(true);
     }
 
     @Override
     public Response<Boolean> updateUser(User user) {
-        userMapper.updateById(user);
+        int row = userMapper.updateById(user);
+        if(row == 0) {
+            return Response.no("更新失败");
+        }
         return Response.yes(true);
     }
 
     @Override
     public Response<Boolean> insertUser(User user) {
-        userMapper.insert(user);
+        int row = userMapper.insert(user);
+        if(row == 0) {
+            return Response.no("添加失败");
+        }
         return Response.yes();
     }
 
@@ -57,6 +79,15 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.selectOne(
                 new QueryWrapper<User>().eq("username", username)
         );
+        if(user == null) {
+            return Response.no("用户不存在！");
+        }
+        // 关联角色
+        List<Role> roleList = roleMapper.findByUserId(user.getId());
+        user.setRoles(roleList);
+        // 关联权限菜单
+        List<Permission> permissionList = permissionMapper.findByUserId(user.getId());
+        user.setPermissions(permissionList);
         return Response.yes(user);
     }
 
@@ -65,6 +96,9 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.selectOne(
                 new QueryWrapper<User>().eq("mobile", mobile)
         );
+        if(user == null) {
+            return Response.no("用户不存在");
+        }
         return Response.yes(user);
     }
 
@@ -73,6 +107,9 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.selectOne(
                 new QueryWrapper<User>().eq("email", email)
         );
+        if(user == null) {
+            return Response.no("用户不存在");
+        }
         return Response.yes(user);
     }
 

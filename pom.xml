@@ -21,6 +21,8 @@
     </properties>
 
     <modules>
+        <module>eureka</module>
+        <module>api-gateway</module>
         <module>sens-user</module>
         <module>sens-blog</module>
         <module>sens-forum</module>

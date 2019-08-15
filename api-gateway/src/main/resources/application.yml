@@ -1,0 +1,41 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: api-gateway
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+# zuul
+zuul:
+  # 前缀，所有服务里的路径前加 /api
+  prefix: /api
+  routes:
+#    sens-user-web: /user/**
+    sens-user-web: /**
+  # 排除某些路由, 支持正则表达式
+  ignored-patterns:
+    - /**/abc/efg
+  # 排除服务
+  ignored-services: sens-user-core
+  # 强制编码一致
+  force-original-query-string-encoding: true
+# 超时时间，ribbon和hystrix是同时生效的，哪个值小哪个生效
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 3000
+
+# 开启权限访问端点，如 /actuator/routes, /actuator/filters
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

@@ -26,58 +26,87 @@
 
     <!--  del_flag 1已删除,0未删除  -->
 
-    <sql id="tb">`t_role`</sql>
+    <sql id="tb">`t_permission`</sql>
 
     <sql id="all_columns">
-        id, default_role, data_type, description, name, del_flag, create_by, create_time, update_by, update_time
+        id, show_always, url, status, button_type, level, icon, title, path, component, sort_order, type, parent_id, description, name, del_flag, create_by, create_time, update_by, update_time
     </sql>
 
     <sql id="all_values">
-        #{id}, #{defaultRole}, #{dataType}, #{description}, #{name}, #{delFlag}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}
+        #{id}, #{showAlways}, #{url}, #{status}, #{buttonType}, #{level}, #{icon}, #{title}, #{path}, #{component}, #{sortOrder}, #{type}, #{parentId}, #{description}, #{name}, #{delFlag}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}
     </sql>
 
     <select id="findByLevelOrderBySortOrder" resultMap="BaseResultMap">
         SELECT
-            <include refid="all_columns"/>
+        <include refid="all_columns"/>
         FROM
-            <include refid="tb"/>
+        <include refid="tb"/>
         WHERE level = #{value} AND del_flag = 0
         ORDER BY sort_order ASC
     </select>
-    
+
     <select id="findByParentIdOrderBySortOrder" resultMap="BaseResultMap">
         SELECT
-            <include refid="all_columns"/>
+        <include refid="all_columns"/>
         FROM
-            <include refid="tb"/>
+        <include refid="tb"/>
         WHERE parent_id = #{value} AND del_flag = 0
         ORDER BY sort_order ASC
     </select>
-    
-    
+
+
     <select id="findByTypeAndStatusOrderBySortOrder" resultMap="BaseResultMap">
         SELECT
-            <include refid="all_columns"/>
+        <include refid="all_columns"/>
         FROM
-            <include refid="tb"/>
+        <include refid="tb"/>
         WHERE type = #{type} AND status = #{status} AND del_flag = 0
         ORDER BY sort_order ASC
     </select>
 
     <select id="findByTitle" resultMap="BaseResultMap">
         SELECT
-            <include refid="all_columns"/>
+        <include refid="all_columns"/>
         FROM
-            <include refid="tb"/>
+        <include refid="tb"/>
         WHERE title = #{title} AND del_flag = 0
     </select>
 
     <select id="findByTitleLikeOrderBySortOrder" resultMap="BaseResultMap">
         SELECT
-            <include refid="all_columns"/>
+        <include refid="all_columns"/>
         FROM
-            <include refid="tb"/>
+        <include refid="tb"/>
         WHERE title LIKE CONCAT('%', #{value} ,'%') AND del_flag = 0
+    </select>
+
+    <select id="findByUserId" resultMap="BaseResultMap">
+        SELECT DISTINCT
+            p.id,
+            p.NAME,
+            p.show_always,
+            p.title,
+            p.path,
+            p.icon,
+            p.type,
+            p.component,
+            p.LEVEL,
+            p.button_type,
+            p.parent_id,
+            p.sort_order,
+            p.description,
+            p.STATUS,
+            p.url
+        FROM
+            t_user u
+            LEFT JOIN t_user_role ur ON u.id = ur.user_id
+            LEFT JOIN t_role_permission rp ON ur.role_id = rp.role_id
+            LEFT JOIN t_permission p ON p.id = rp.permission_id
+        WHERE
+            u.id = #{userId}
+            AND p.STATUS = 0
+        ORDER BY
+            p.sort_order ASC
     </select>
 
 </mapper>

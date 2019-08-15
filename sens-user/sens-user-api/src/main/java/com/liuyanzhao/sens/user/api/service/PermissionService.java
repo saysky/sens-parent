@@ -1,6 +1,7 @@
 package com.liuyanzhao.sens.user.api.service;
 
 import com.liuyanzhao.sens.user.api.entity.Permission;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -57,4 +58,13 @@ public interface PermissionService {
      */
     @GetMapping("/permission/findByTitleLikeOrderBySortOrder")
     List<Permission> findByTitleLikeOrderBySortOrder(@RequestParam("title") String title);
+
+    /**
+     * 通过用户id获取
+     * @param userId
+     * @return
+     */
+    @Cacheable(value = "user::userPermission", key = "#userId")
+    @GetMapping("/permission/findByUserId")
+    List<Permission> findByUserId(Long userId);
 }

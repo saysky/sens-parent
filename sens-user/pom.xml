@@ -20,6 +20,7 @@
     <modules>
         <module>sens-user-api</module>
         <module>sens-user-core</module>
+        <module>sens-user-web</module>
     </modules>
 
 

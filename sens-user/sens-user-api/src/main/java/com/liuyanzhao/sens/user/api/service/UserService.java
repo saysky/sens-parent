@@ -1,6 +1,5 @@
 package com.liuyanzhao.sens.user.api.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.liuyanzhao.sens.common.vo.Response;
 import com.liuyanzhao.sens.user.api.dto.UserCondition;
