@@ -10,7 +10,7 @@ It is now 00:59:35 on August 07, 2019, I hope I can keep going and get a good re
 ## 项目结构
 
 * 【eureka】服务注册中心
-* 【api-server】服务网关
+* 【api-gateway】服务网关
 * 【sens-user】用户中心服务：单点登录，权限鉴定，用户管理。API、服务提供者、服务消费者
 * 【sens-blog】博客服务：博客相关管理。API、服务提供者、服务消费者
 * 【sens-music】音乐服务：音乐相关管理。API、服务提供者、服务消费者
