@@ -22,6 +22,38 @@ public class PermissionServiceImpl implements PermissionService {
 
 
     @Override
+    public Permission findById(Long id) {
+        return permissionMapper.selectById(id);
+    }
+
+    @Override
+    public Integer getTotalCount() {
+        return permissionMapper.selectCount(null);
+    }
+
+    @Override
+    public Permission insert(Permission entity) {
+        permissionMapper.insert(entity);
+        return entity;
+    }
+
+    @Override
+    public Permission update(Permission entity) {
+        permissionMapper.updateById(entity);
+        return entity;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        permissionMapper.deleteById(id);
+    }
+
+    @Override
+    public void deleteBatchIds(List<Long> ids) {
+        permissionMapper.deleteBatchIds(ids);
+    }
+
+    @Override
     public List<Permission> findByLevelOrderBySortOrder(Integer level) {
         return permissionMapper.findByLevelOrderBySortOrder(level);
     }

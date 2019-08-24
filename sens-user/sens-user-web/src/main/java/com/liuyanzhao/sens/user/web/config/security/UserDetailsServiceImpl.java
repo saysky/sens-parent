@@ -38,8 +38,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
             //超过限制次数
             throw new LoginFailLimitException("登录错误次数超过限制，请"+timeRest+"分钟后再试");
         }
-        Response<User> response = userService.findByUsername(username);
-        User user = response.getData();
+        User user = userService.findByUsername(username);
         return new SecurityUserDetails(user);
     }
 }

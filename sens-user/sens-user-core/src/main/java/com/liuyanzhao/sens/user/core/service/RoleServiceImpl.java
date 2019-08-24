@@ -21,6 +21,36 @@ public class RoleServiceImpl implements RoleService {
     private RoleMapper roleMapper;
 
     @Override
+    public Role findById(Long id) {
+        return roleMapper.selectById(id);
+    }
+
+    @Override
+    public Integer getTotalCount() {
+        return null;
+    }
+
+    @Override
+    public Role insert(Role entity) {
+        return null;
+    }
+
+    @Override
+    public Role update(Role entity) {
+        return null;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+
+    }
+
+    @Override
+    public void deleteBatchIds(List<Long> ids) {
+
+    }
+
+    @Override
     public List<Role> findByDefaultRole(Boolean defaultRole) {
         return roleMapper.findByDefaultRole(defaultRole);
     }

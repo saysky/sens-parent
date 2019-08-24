@@ -1,10 +1,11 @@
-package com.liuyanzhao.sens.common.entity;
+package com.liuyanzhao.sens.common.base;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.liuyanzhao.sens.common.constant.CommonConstant;
+import com.liuyanzhao.sens.common.util.SnowFlakeUtil;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -20,8 +21,8 @@ public class BaseEntity implements Serializable {
     /**
      * ID，自增
      */
-    @TableId(type = IdType.AUTO)
-    private Long id;
+    @TableId(type = IdType.INPUT)
+    private Long id = SnowFlakeUtil.getFlowIdInstance().nextId();
 
     /**
      * 删除状态：1删除，0未删除

@@ -3,8 +3,7 @@ package com.liuyanzhao.sens.user.api.service;
 import com.liuyanzhao.sens.user.api.entity.Role;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,6 +15,58 @@ import java.util.List;
 @FeignClient(name = "sens-user-core")
 public interface RoleService {
 
+    /**
+     * 根据ID获取
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/role/findById")
+    Role findById(@RequestParam("id") Long id);
+
+    /**
+     * 获取总数
+     *
+     * @return
+     */
+    @GetMapping("/role/getTotalCount")
+    Integer getTotalCount();
+
+    /**
+     * 保存
+     *
+     * @param entity
+     * @return
+     */
+    @PostMapping("/role/insert")
+    Role insert(@RequestBody Role entity);
+
+    /**
+     * 修改
+     *
+     * @param entity
+     * @return
+     */
+    @PutMapping("/role/update")
+    Role update(@RequestBody Role entity);
+
+
+    /**
+     * 根据ID删除
+     *
+     * @param id
+     */
+    @DeleteMapping("/role/deleteById")
+    void deleteById(@RequestParam("id") Long id);
+
+    /**
+     * 批量删除
+     *
+     * @param ids
+     */
+    @DeleteMapping("/role/deleteBatchIds")
+    void deleteBatchIds(@RequestParam("entities") List<Long> ids);
+    
     /**
      * 获取默认角色
      * @param defaultRole

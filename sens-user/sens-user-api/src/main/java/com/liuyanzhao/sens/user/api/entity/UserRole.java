@@ -2,7 +2,7 @@ package com.liuyanzhao.sens.user.api.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.liuyanzhao.sens.common.entity.BaseEntity;
+import com.liuyanzhao.sens.common.base.BaseEntity;
 import lombok.Data;
 
 /**
@@ -18,12 +18,12 @@ public class UserRole extends BaseEntity {
     /**
      * 用户唯一id
      */
-    private String userId;
+    private Long userId;
 
     /**
      * 角色唯一id
      */
-    private String roleId;
+    private Long roleId;
 
     /**
      * 角色名

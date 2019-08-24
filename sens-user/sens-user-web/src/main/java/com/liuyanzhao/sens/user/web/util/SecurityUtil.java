@@ -52,8 +52,7 @@ public class SecurityUtil {
             }
         }
         // 生成token
-        Response<User> response = userService.findByUsername(username);
-        User u = response.getData();
+        User u = userService.findByUsername(username);
         if (u == null) {
             return null;
         }
@@ -114,8 +113,7 @@ public class SecurityUtil {
      */
     public User getCurrUser() {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Response<User> response = userService.findByUsername(userDetails.getUsername());
-        return response.getData();
+        return userService.findByUsername(userDetails.getUsername());
     }
 
 //    /**
@@ -148,9 +146,8 @@ public class SecurityUtil {
      * @param username
      */
     public List<GrantedAuthority> getCurrUserPerms(String username) {
-        Response<User> response = userService.findByUsername(username);
+        User user = userService.findByUsername(username);
         List<GrantedAuthority> authorities = new ArrayList<>();
-        User user = response.getData();
         if (user != null) {
             for (Permission p : user.getPermissions()) {
                 authorities.add(new SimpleGrantedAuthority(p.getTitle()));

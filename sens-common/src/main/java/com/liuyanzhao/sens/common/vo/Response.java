@@ -73,4 +73,8 @@ public class Response<T> implements Serializable {
         this.code = code;
     }
 
+    public Boolean isSuccess() {
+        return this.code == 200;
+    }
+
 }

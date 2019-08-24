@@ -1,9 +1,11 @@
 package com.liuyanzhao.sens.user.web.controller;
 
+import com.liuyanzhao.sens.user.api.entity.User;
 import com.liuyanzhao.sens.user.api.service.UserService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -21,7 +23,7 @@ public class MainController {
     @HystrixCommand(fallbackMethod = "fallback")
     public String hello() {
         //调用了服务，令该服务不可用，测试服务降级
-        userService.getUserById(1L);
+        userService.findById(1L);
         return "Hello, I will always be there.";
     }
 

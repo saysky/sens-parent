@@ -12,6 +12,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -24,6 +25,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -68,6 +70,10 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
         String header = request.getHeader(SecurityConstant.HEADER);
         if(StrUtil.isBlank(header)){
             header = request.getParameter(SecurityConstant.HEADER);
+        }
+        if(StrUtil.isBlank(header)){
+            header = getCookieValue(request, SecurityConstant.HEADER);
+
         }
         Boolean notValid = StrUtil.isBlank(header) || (!tokenProperties.getRedis() && !header.startsWith(SecurityConstant.TOKEN_SPLIT));
         if (notValid) {
@@ -151,6 +157,19 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
             // 踩坑提醒 此处password不能为null
             User principal = new User(username, "", authorities);
             return new UsernamePasswordAuthenticationToken(principal, null, authorities);
+        }
+        return null;
+    }
+
+    private String getCookieValue(HttpServletRequest request, String cookieName) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies == null || cookies.length <= 0) {
+             return null;
+        }
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals(cookieName)) {
+                return cookie.getValue();
+            }
         }
         return null;
     }

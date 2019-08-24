@@ -3,9 +3,8 @@ package com.liuyanzhao.sens.user.core.service;
 import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.liuyanzhao.sens.common.vo.Response;
+import com.liuyanzhao.sens.common.dto.QueryCondition;
 import com.liuyanzhao.sens.common.vo.SearchVo;
-import com.liuyanzhao.sens.user.api.dto.UserCondition;
 import com.liuyanzhao.sens.user.api.entity.Permission;
 import com.liuyanzhao.sens.user.api.entity.Role;
 import com.liuyanzhao.sens.user.api.entity.User;
@@ -38,87 +37,44 @@ public class UserServiceImpl implements UserService {
     private PermissionMapper permissionMapper;
 
     @Override
-    public Response<User> getUserById(Long id) {
-        User user = userMapper.selectById(id);
-        if(user == null) {
-            return Response.no("用户不存在！");
-        }
-        return Response.yes(user);
-    }
-
-
-    @Override
-    public Response<Boolean> deleteUserById(Long id) {
-        int row = userMapper.deleteById(id);
-        if(row == 0) {
-            return Response.no("删除失败");
-        }
-        return Response.yes(true);
-    }
-
-    @Override
-    public Response<Boolean> updateUser(User user) {
-        int row = userMapper.updateById(user);
-        if(row == 0) {
-            return Response.no("更新失败");
-        }
-        return Response.yes(true);
-    }
-
-    @Override
-    public Response<Boolean> insertUser(User user) {
-        int row = userMapper.insert(user);
-        if(row == 0) {
-            return Response.no("添加失败");
-        }
-        return Response.yes();
-    }
-
-    @Override
-    public Response<User> findByUsername(String username) {
+    public User findByUsername(String username) {
         User user = userMapper.selectOne(
                 new QueryWrapper<User>().eq("username", username)
         );
-        if(user == null) {
-            return Response.no("用户不存在！");
+        if(user != null) {
+            // 关联角色
+            List<Role> roleList = roleMapper.findByUserId(user.getId());
+            user.setRoles(roleList);
+            // 关联权限菜单
+            List<Permission> permissionList = permissionMapper.findByUserId(user.getId());
+            user.setPermissions(permissionList);
         }
-        // 关联角色
-        List<Role> roleList = roleMapper.findByUserId(user.getId());
-        user.setRoles(roleList);
-        // 关联权限菜单
-        List<Permission> permissionList = permissionMapper.findByUserId(user.getId());
-        user.setPermissions(permissionList);
-        return Response.yes(user);
+        return user;
     }
 
     @Override
-    public Response<User> findByMobile(String mobile) {
+    public User findByMobile(String mobile) {
         User user = userMapper.selectOne(
                 new QueryWrapper<User>().eq("mobile", mobile)
         );
-        if(user == null) {
-            return Response.no("用户不存在");
-        }
-        return Response.yes(user);
+        return user;
     }
 
     @Override
-    public Response<User> findByEmail(String email) {
+    public User findByEmail(String email) {
         User user = userMapper.selectOne(
                 new QueryWrapper<User>().eq("email", email)
         );
-        if(user == null) {
-            return Response.no("用户不存在");
-        }
-        return Response.yes(user);
+        return user;
     }
 
     @Override
-    public Response<Page<User>> findByCondition(UserCondition userCondition) {
-        User user = userCondition.getUser();
-        SearchVo searchVo = userCondition.getSearchVo();
+    public Page<User> findByCondition(QueryCondition<User> userCondition) {
+        User user = userCondition.getData();
         Page page = userCondition.getPage();
+        SearchVo searchVo = userCondition.getSearchVo();
 
+        //对指定字段查询
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         if (user != null) {
             if (user.getUsername() != null) {
@@ -143,14 +99,51 @@ public class UserServiceImpl implements UserService {
                 queryWrapper.eq("mobile", user.getMobile());
             }
         }
+
+        //查询日期范围
         if (searchVo != null) {
-            if (searchVo.getStartDate() != null && searchVo.getEndDate() != null) {
-                Date start = DateUtil.parse(searchVo.getStartDate());
-                Date end = DateUtil.parse(searchVo.getEndDate());
+            String startDate = searchVo.getStartDate();
+            String endDate = searchVo.getEndDate();
+            if (startDate != null && endDate != null) {
+                Date start = DateUtil.parse(startDate);
+                Date end = DateUtil.parse(endDate);
                 queryWrapper.between("create_time", start, end);
             }
         }
         Page<User> userPage = (Page<User>) userMapper.selectPage(page, queryWrapper);
-        return Response.yes(userPage);
+        return userPage;
+    }
+
+
+    @Override
+    public User findById(Long id) {
+        return userMapper.selectById(id);
+    }
+
+    @Override
+    public Integer getTotalCount() {
+        return userMapper.selectCount(null);
+    }
+
+    @Override
+    public User insert(User entity) {
+        userMapper.insert(entity);
+        return entity;
+    }
+
+    @Override
+    public User update(User entity) {
+        userMapper.updateById(entity);
+        return entity;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        userMapper.deleteById(id);
+    }
+
+    @Override
+    public void deleteBatchIds(List<Long> ids) {
+        deleteBatchIds(ids);
     }
 }

@@ -38,4 +38,11 @@
         WHERE role_id = #{value} AND del_flag = 0
     </select>
 
+    <select id="findByUserId" resultType="com.liuyanzhao.sens.user.api.entity.Role">
+      SELECT r.id id, name, r.data_type
+      FROM t_user_role ur
+      LEFT JOIN t_role r
+      ON ur.role_id = r.id
+      WHERE user_Id = #{userId}
+    </select>
 </mapper>

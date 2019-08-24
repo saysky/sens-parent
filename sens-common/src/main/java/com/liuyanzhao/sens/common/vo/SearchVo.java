@@ -11,6 +11,11 @@ import java.io.Serializable;
 public class SearchVo implements Serializable {
 
     /**
+     * 搜索关键字
+     */
+    private  String keywords;
+
+    /**
      * 起始日期
      */
     private String startDate;

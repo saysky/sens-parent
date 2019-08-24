@@ -3,8 +3,7 @@ package com.liuyanzhao.sens.user.api.service;
 import com.liuyanzhao.sens.user.api.entity.Permission;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,6 +14,61 @@ import java.util.List;
  */
 @FeignClient(name = "sens-user-core")
 public interface PermissionService {
+
+
+    /**
+     * 根据ID获取
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/permission/findById")
+    Permission findById(@RequestParam("id") Long id);
+
+    /**
+     * 获取总数
+     *
+     * @return
+     */
+    @GetMapping("/permission/getTotalCount")
+    Integer getTotalCount();
+
+    /**
+     * 保存
+     *
+     * @param entity
+     * @return
+     */
+    @PostMapping("/permission/insert")
+    Permission insert(@RequestBody Permission entity);
+
+    /**
+     * 修改
+     *
+     * @param entity
+     * @return
+     */
+    @PutMapping("/permission/update")
+    Permission update(@RequestBody Permission entity);
+
+
+    /**
+     * 根据ID删除
+     *
+     * @param id
+     */
+    @DeleteMapping("/permission/deleteById")
+    void deleteById(@RequestParam("id") Long id);
+
+    /**
+     * 批量删除
+     *
+     * @param ids
+     */
+    @DeleteMapping("/permission/deleteBatchIds")
+    void deleteBatchIds(@RequestParam("entities") List<Long> ids);
+
+
 
     /**
      * 通过层级查找
