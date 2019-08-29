@@ -23,7 +23,7 @@ public interface PermissionService {
      * @return
      */
     @GetMapping("/permission/findById")
-    Permission findById(@RequestParam("id") Long id);
+    Permission findById(@RequestParam("id") String id);
 
     /**
      * 获取总数
@@ -58,7 +58,7 @@ public interface PermissionService {
      * @param id
      */
     @DeleteMapping("/permission/deleteById")
-    void deleteById(@RequestParam("id") Long id);
+    void deleteById(@RequestParam("id") String id);
 
     /**
      * 批量删除
@@ -66,7 +66,7 @@ public interface PermissionService {
      * @param ids
      */
     @DeleteMapping("/permission/deleteBatchIds")
-    void deleteBatchIds(@RequestParam("entities") List<Long> ids);
+    void deleteBatchIds(@RequestParam("ids") List<String> ids);
 
 
 
@@ -120,5 +120,5 @@ public interface PermissionService {
      */
     @Cacheable(value = "user::userPermission", key = "#userId")
     @GetMapping("/permission/findByUserId")
-    List<Permission> findByUserId(Long userId);
+    List<Permission> findByUserId(@RequestParam("userId") String userId);
 }

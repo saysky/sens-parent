@@ -3,7 +3,7 @@ package com.liuyanzhao.sens.user.web.config.security.jwt;
 import cn.hutool.core.util.StrUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.liuyanzhao.sens.common.ResponseUtil;
+import com.liuyanzhao.sens.common.util.ResponseUtil;
 import com.liuyanzhao.sens.user.web.config.properties.TokenProperties;
 import com.liuyanzhao.sens.user.web.constant.SecurityConstant;
 import com.liuyanzhao.sens.user.web.util.SecurityUtil;
@@ -12,7 +12,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -71,10 +70,10 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
         if(StrUtil.isBlank(header)){
             header = request.getParameter(SecurityConstant.HEADER);
         }
-        if(StrUtil.isBlank(header)){
-            header = getCookieValue(request, SecurityConstant.HEADER);
-
-        }
+//        if(StrUtil.isBlank(header)){
+//            header = getCookieValue(request, SecurityConstant.HEADER);
+//
+//        }
         Boolean notValid = StrUtil.isBlank(header) || (!tokenProperties.getRedis() && !header.startsWith(SecurityConstant.TOKEN_SPLIT));
         if (notValid) {
             chain.doFilter(request, response);

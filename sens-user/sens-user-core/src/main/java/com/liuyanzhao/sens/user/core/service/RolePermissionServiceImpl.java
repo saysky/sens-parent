@@ -30,7 +30,7 @@ public class RolePermissionServiceImpl implements RolePermissionService {
     }
 
     @Override
-    public RolePermission findById(Long id) {
+    public RolePermission findById(String id) {
         return null;
     }
 
@@ -50,12 +50,12 @@ public class RolePermissionServiceImpl implements RolePermissionService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(String id) {
 
     }
 
     @Override
-    public void deleteBatchIds(List<Long> ids) {
+    public void deleteBatchIds(List<String> ids) {
 
     }
 }

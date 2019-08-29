@@ -1,4 +1,4 @@
-package com.liuyanzhao.sens.common;
+package com.liuyanzhao.sens.common.util;
 
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
@@ -16,11 +16,12 @@ import java.util.Map;
 public class ResponseUtil {
 
     /**
-     *  使用response输出JSON
+     * 使用response输出JSON
+     *
      * @param response
      * @param resultMap
      */
-    public static void out(HttpServletResponse response, Map<String, Object> resultMap){
+    public static void out(HttpServletResponse response, Map<String, Object> resultMap) {
 
         ServletOutputStream out = null;
         try {
@@ -30,8 +31,8 @@ public class ResponseUtil {
             out.write(new Gson().toJson(resultMap).getBytes());
         } catch (Exception e) {
             log.error(e + "输出JSON出错");
-        } finally{
-            if(out!=null){
+        } finally {
+            if (out != null) {
                 try {
                     out.flush();
                     out.close();
@@ -42,20 +43,20 @@ public class ResponseUtil {
         }
     }
 
-    public static Map<String, Object> resultMap(boolean flag, Integer code, String msg){
+    public static Map<String, Object> resultMap(boolean flag, Integer code, String msg) {
 
         return resultMap(flag, code, msg, null);
     }
 
-    public static Map<String, Object> resultMap(boolean flag, Integer code, String msg, Object data){
+    public static Map<String, Object> resultMap(boolean flag, Integer code, String msg, Object data) {
 
         Map<String, Object> resultMap = new HashMap<String, Object>(16);
         resultMap.put("success", flag);
         resultMap.put("message", msg);
         resultMap.put("code", code);
         resultMap.put("timestamp", System.currentTimeMillis());
-        if(data!=null){
-            resultMap.put("result", data);
+        if (data != null) {
+            resultMap.put("data", data);
         }
         return resultMap;
     }

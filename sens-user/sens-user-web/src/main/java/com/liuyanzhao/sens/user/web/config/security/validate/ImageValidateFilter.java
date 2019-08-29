@@ -1,7 +1,7 @@
 package com.liuyanzhao.sens.user.web.config.security.validate;
 
 import cn.hutool.core.util.StrUtil;
-import com.liuyanzhao.sens.common.ResponseUtil;
+import com.liuyanzhao.sens.common.util.ResponseUtil;
 import com.liuyanzhao.sens.user.web.config.properties.CaptchaProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.io.IOException;
 
 /**
  * 图形验证码过滤器
- * @author Exrick
+ * @author liuyanzhao
  */
 @Slf4j
 @Configuration

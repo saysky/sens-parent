@@ -39,9 +39,9 @@ public class UserMapperTest {
      */
     @Test
     public void testDeleteBatchIds() {
-        List<Long> list = new ArrayList<>(2);
-        list.add(3L);
-        list.add(4L);
+        List<String> list = new ArrayList<>(2);
+        list.add("3");
+        list.add("4");
         userMapper.deleteBatchIds(list);
     }
 
@@ -50,7 +50,7 @@ public class UserMapperTest {
      */
     @Test
     public void testSelectById() {
-        User user = userMapper.selectById(1L);
+        User user = userMapper.selectById("1");
         System.out.println(user);
     }
 

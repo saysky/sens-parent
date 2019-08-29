@@ -23,7 +23,7 @@ public interface UserService  {
      * @return
      */
     @GetMapping("/user/findById")
-    User findById(@RequestParam("id") Long id);
+    User findById(@RequestParam("id") String id);
 
     /**
      * 获取总数
@@ -58,7 +58,7 @@ public interface UserService  {
      * @param id
      */
     @DeleteMapping("/user/deleteById")
-    void deleteById(@RequestParam("id") Long id);
+    void deleteById(@RequestParam("id") String id);
 
     /**
      * 批量删除
@@ -66,7 +66,7 @@ public interface UserService  {
      * @param ids
      */
     @DeleteMapping("/user/deleteBatchIds")
-    void deleteBatchIds(@RequestParam("entities") List<Long> ids);
+    void deleteBatchIds(@RequestParam("ids") List<String> ids);
     
     /**
      * 通过用户名获取用户

@@ -21,7 +21,7 @@
 
     <!--  del_flag 1已删除,0未删除  -->
 
-    <sql id="tb">`log`</sql>
+    <sql id="tb">`t_log`</sql>
 
     <sql id="all_columns">
         id, name, log_type, request_url, request_type,

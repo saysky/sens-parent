@@ -1,7 +1,7 @@
 package com.liuyanzhao.sens.user.web.config.security.jwt;
 
 
-import com.liuyanzhao.sens.common.ResponseUtil;
+import com.liuyanzhao.sens.common.util.ResponseUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;

@@ -29,6 +29,9 @@ public class QueryCondition<T> implements Serializable {
      */
     private Page<T> page;
 
+    public QueryCondition() {
+    }
+
     public QueryCondition(Page<T> page) {
         this.page = page;
     }

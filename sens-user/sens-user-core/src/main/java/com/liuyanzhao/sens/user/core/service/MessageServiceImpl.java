@@ -30,7 +30,7 @@ public class MessageServiceImpl implements MessageService {
 
 
     @Override
-    public Message findById(Long id) {
+    public Message findById(String id) {
         return messageMapper.selectById(id);
     }
 
@@ -52,12 +52,12 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(String id) {
         messageMapper.deleteById(id);
     }
 
     @Override
-    public void deleteBatchIds(List<Long> ids) {
+    public void deleteBatchIds(List<String> ids) {
         messageMapper.deleteBatchIds(ids);
     }
 

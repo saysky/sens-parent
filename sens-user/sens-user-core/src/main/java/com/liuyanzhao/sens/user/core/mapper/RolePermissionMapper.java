@@ -24,11 +24,11 @@ public interface RolePermissionMapper extends BaseMapper<RolePermission> {
      * 通过roleId获取
      * @param roleId
      */
-    List<RolePermission> findByRoleId(Long roleId);
+    List<RolePermission> findByRoleId(String roleId);
 
     /**
      * 通过roleId删除
      * @param roleId
      */
-    void deleteByRoleId(Long roleId);
+    void deleteByRoleId(String roleId);
 }

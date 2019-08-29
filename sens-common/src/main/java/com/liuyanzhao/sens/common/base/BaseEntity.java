@@ -19,10 +19,10 @@ import java.util.Date;
 public class BaseEntity implements Serializable {
 
     /**
-     * ID，自增
+     * ID，自动生成
      */
     @TableId(type = IdType.INPUT)
-    private Long id = SnowFlakeUtil.getFlowIdInstance().nextId();
+    private String id = String.valueOf(SnowFlakeUtil.getFlowIdInstance().nextId());
 
     /**
      * 删除状态：1删除，0未删除

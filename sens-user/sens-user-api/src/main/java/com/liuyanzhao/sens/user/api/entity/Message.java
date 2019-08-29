@@ -9,7 +9,7 @@ import lombok.Data;
 /**
  * 消息
  *
- * @author Exrick
+ * @author liuyanzhao
  */
 @Data
 @TableName("t_message")

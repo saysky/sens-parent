@@ -21,18 +21,18 @@ public interface UserRoleMapper extends BaseMapper<UserRole> {
      * @param roleId
      * @return
      */
-    List<UserRole> findByRoleId(Long roleId);
+    List<UserRole> findByRoleId(String roleId);
 
     /**
      * 删除用户角色
      * @param userId
      */
-    void deleteByUserId(Long userId);
+    void deleteByUserId(String userId);
 
     /**
      * 通过用户id获取
      * @param userId
      * @return
      */
-    List<Role> findByUserId(@Param("userId") Long userId);
+    List<Role> findByUserId(@Param("userId") String userId);
 }

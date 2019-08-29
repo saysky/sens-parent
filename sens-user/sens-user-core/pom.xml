@@ -96,7 +96,11 @@
             <artifactId>jedis</artifactId>
             <version>2.9.3</version>
         </dependency>
-
+        <!-- Websocket -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

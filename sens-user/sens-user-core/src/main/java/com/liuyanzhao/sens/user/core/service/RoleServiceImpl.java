@@ -21,33 +21,35 @@ public class RoleServiceImpl implements RoleService {
     private RoleMapper roleMapper;
 
     @Override
-    public Role findById(Long id) {
+    public Role findById(String id) {
         return roleMapper.selectById(id);
     }
 
     @Override
     public Integer getTotalCount() {
-        return null;
+         return roleMapper.selectCount(null);
     }
 
     @Override
     public Role insert(Role entity) {
-        return null;
+        roleMapper.insert(entity);
+        return entity;
     }
 
     @Override
     public Role update(Role entity) {
-        return null;
+        roleMapper.updateById(entity);
+        return entity;
     }
 
     @Override
-    public void deleteById(Long id) {
-
+    public void deleteById(String id) {
+        roleMapper.deleteById(id);
     }
 
     @Override
-    public void deleteBatchIds(List<Long> ids) {
-
+    public void deleteBatchIds(List<String> ids) {
+        roleMapper.deleteBatchIds(ids);
     }
 
     @Override
@@ -56,7 +58,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<Role> findByUserId(Long userId) {
+    public List<Role> findByUserId(String userId) {
         return roleMapper.findByUserId(userId);
     }
 }

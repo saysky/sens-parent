@@ -2,12 +2,12 @@ package com.liuyanzhao.sens.user.web.config.security.jwt;
 
 import cn.hutool.core.util.StrUtil;
 import com.google.gson.Gson;
-import com.liuyanzhao.sens.common.IpInfoUtil;
-import com.liuyanzhao.sens.common.ResponseUtil;
+import com.liuyanzhao.sens.common.util.ResponseUtil;
 import com.liuyanzhao.sens.common.annotation.SystemLog;
 import com.liuyanzhao.sens.common.enums.LogType;
 import com.liuyanzhao.sens.user.web.config.properties.TokenProperties;
 import com.liuyanzhao.sens.user.web.constant.SecurityConstant;
+import com.liuyanzhao.sens.user.web.util.IpInfoUtil;
 import com.liuyanzhao.sens.user.web.vo.TokenUser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

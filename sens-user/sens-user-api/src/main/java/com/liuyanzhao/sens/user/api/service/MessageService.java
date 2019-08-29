@@ -24,7 +24,7 @@ public interface MessageService {
      * @return
      */
     @GetMapping("/message/findById")
-    Message findById(@RequestParam("id") Long id);
+    Message findById(@RequestParam("id") String id);
 
     /**
      * 获取总数
@@ -59,7 +59,7 @@ public interface MessageService {
      * @param id
      */
     @DeleteMapping("/message/deleteById")
-    void deleteById(@RequestParam("id") Long id);
+    void deleteById(@RequestParam("id") String id);
 
     /**
      * 批量删除
@@ -67,7 +67,7 @@ public interface MessageService {
      * @param ids
      */
     @DeleteMapping("/message/deleteBatchIds")
-    void deleteBatchIds(@RequestParam("ids") List<Long> ids);
+    void deleteBatchIds(@RequestParam("ids") List<String> ids);
 
 
     /**

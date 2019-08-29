@@ -60,7 +60,7 @@ sens:
     es: false
   # mob api配置 mob官网注册申请即可
   mob:
-    appKey: 你的appKey
+    appKey: 2c3e1bfd225d9
   # 第三方社交登录配置
   social:
     # 前端回调登录地址
@@ -71,36 +71,55 @@ sens:
     github:
       clientId: 你的clientId
       clientSecret: 你的clientSecret
-      callbackUrl: http://127.0.0.1:8888/sens/social/github/callback
+      callbackUrl: http://127.0.0.1:8888/social/github/callback
     # qq
     qq:
       appId: 你的appId
       appKey: 你的appKey
-      callbackUrl: http://127.0.0.1:8888/sens/social/qq/callback
+      callbackUrl: http://127.0.0.1:8888/social/qq/callback
     # weibo
     weibo:
       appKey: 你的appKey
       appSecret: 你的appSecret
-      callbackUrl: http://127.0.0.1:8888/sens/social/weibo/callback
+      callbackUrl: http://127.0.0.1:8888/social/weibo/callback
 
+# 需要验证码校验的接口路径 支持通配符 自动过滤拦截校验 无需开发人员再次校验
+captcha:
+  # 图片验证码验证
+  image:
+    - /uaa/login # 登录接口
+  # 短信验证码验证
+  sms:
+    - /user/regist # 注册接口
+    - /user/smsLogin # 短信登录接口
+    - /user/resetByMobile # 手机重置密码
+    - /user/changeMobile # 更换绑定手机
+  # Vaptcha验证码验证
+  vaptcha:
+    - /common/captcha/sendResetSms/** # 发送重置密码短信
+    - /email/sendResetCode/** # 发送重置密码邮件
+    - /social/relate # 绑定第三方账号
+  # Email验证码验证
+  email:
+    - /email/resetByEmail # 邮件重置密码
+    - /email/editEmail # 修改绑定邮箱
 
 # 忽略鉴权url
 ignored:
   urls:
-    - /sens/actuator/**
-    - /sens/admin/**
+    - /actuator/**
+    - /admin/**
     - /editor-app/**
-    - /sens/act/**
-    - /sens/dictData/getByType/**
-    - /sens/email/sendResetCode
-    - /sens/email/resetByEmail
-    - /sens/file/view/**
-    - /sens/social/**
-    - /sens/ws/**
-    - /sens/user/regist
-    - /sens/user/smsLogin
-    - /sens/user/resetByMobile
-    - /sens/common/**
+    - /act/**
+    - /email/sendResetCode
+    - /email/resetByEmail
+    - /file/view/**
+    - /social/**
+    - /ws/**
+    - /user/regist
+    - /user/smsLogin
+    - /user/resetByMobile
+    - /common/**
     - /druid/**
     - /swagger-ui.html
     - /swagger-resources/**
@@ -110,5 +129,8 @@ ignored:
     - /**/*.css
     - /**/*.png
     - /**/*.ico
-    - /sens/test/**
+    - /test/**
     - /user/**
+    - /common/**
+    - /uaa/**
+    - /dictData/getByType/**

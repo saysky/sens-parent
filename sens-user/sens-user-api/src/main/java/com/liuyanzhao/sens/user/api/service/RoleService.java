@@ -22,7 +22,7 @@ public interface RoleService {
      * @return
      */
     @GetMapping("/role/findById")
-    Role findById(@RequestParam("id") Long id);
+    Role findById(@RequestParam("id") String id);
 
     /**
      * 获取总数
@@ -57,7 +57,7 @@ public interface RoleService {
      * @param id
      */
     @DeleteMapping("/role/deleteById")
-    void deleteById(@RequestParam("id") Long id);
+    void deleteById(@RequestParam("id") String id);
 
     /**
      * 批量删除
@@ -65,7 +65,7 @@ public interface RoleService {
      * @param ids
      */
     @DeleteMapping("/role/deleteBatchIds")
-    void deleteBatchIds(@RequestParam("entities") List<Long> ids);
+    void deleteBatchIds(@RequestParam("ids") List<String> ids);
     
     /**
      * 获取默认角色
@@ -82,5 +82,5 @@ public interface RoleService {
      */
     @Cacheable(value = "user::userRole", key = "#userId")
     @GetMapping("/role/findByUserId")
-    List<Role> findByUserId(Long userId);
+    List<Role> findByUserId(String userId);
 }

@@ -24,7 +24,7 @@ public interface LogService {
      * @return
      */
     @GetMapping("/log/findById")
-    Log findById(@RequestParam("id") Long id);
+    Log findById(@RequestParam("id") String id);
 
     /**
      * 获取总数
@@ -59,7 +59,7 @@ public interface LogService {
      * @param id
      */
     @DeleteMapping("/log/deleteById")
-    void deleteById(@RequestParam("id") Long id);
+    void deleteById(@RequestParam("id") String id);
 
     /**
      * 批量删除
@@ -67,7 +67,7 @@ public interface LogService {
      * @param ids
      */
     @DeleteMapping("/log/deleteBatchIds")
-    void deleteBatchIds(@RequestParam("entities") List<Long> ids);
+    void deleteBatchIds(@RequestParam("ids") List<String> ids);
 
 
     /**

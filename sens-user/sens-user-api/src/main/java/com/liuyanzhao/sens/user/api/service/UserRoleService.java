@@ -24,7 +24,7 @@ public interface UserRoleService  {
      * @return
      */
     @GetMapping("/userRole/findById")
-    UserRole findById(@RequestParam("id") Long id);
+    UserRole findById(@RequestParam("id") String id);
 
     /**
      * 获取总数
@@ -59,7 +59,7 @@ public interface UserRoleService  {
      * @param id
      */
     @DeleteMapping("/userRole/deleteById")
-    void deleteById(@RequestParam("id") Long id);
+    void deleteById(@RequestParam("id") String id);
 
     /**
      * 批量删除
@@ -67,7 +67,7 @@ public interface UserRoleService  {
      * @param ids
      */
     @DeleteMapping("/userRole/deleteBatchIds")
-    void deleteBatchIds(@RequestParam("entities") List<Long> ids);
+    void deleteBatchIds(@RequestParam("ids") List<String> ids);
 
 
     /**
@@ -76,7 +76,7 @@ public interface UserRoleService  {
      * @return
      */
     @GetMapping("/userRole/findByRoleId")
-    List<UserRole> findByRoleId(@RequestParam("roleId") Long roleId);
+    List<UserRole> findByRoleId(@RequestParam("roleId") String roleId);
 
     /**
      * 通过roleId查找用户
@@ -84,14 +84,14 @@ public interface UserRoleService  {
      * @return
      */
     @GetMapping("/userRole/findUserByRoleId")
-    List<User> findUserByRoleId(@RequestParam("roleId") Long roleId);
+    List<User> findUserByRoleId(@RequestParam("roleId") String roleId);
 
     /**
      * 删除用户角色
      * @param userId
      */
     @DeleteMapping("/userRole/deleteByUserId")
-    void deleteByUserId(@RequestParam("userId") Long userId);
+    void deleteByUserId(@RequestParam("userId") String userId);
 
     /**
      * 通过用户id获取
@@ -100,6 +100,6 @@ public interface UserRoleService  {
      */
     @Cacheable(key = "#userId")
     @GetMapping("/userRole/deleteByUserId")
-    List<Role> findByUserId(@RequestParam("userId") Long userId);
+    List<Role> findByUserId(@RequestParam("userId") String userId);
 
 }

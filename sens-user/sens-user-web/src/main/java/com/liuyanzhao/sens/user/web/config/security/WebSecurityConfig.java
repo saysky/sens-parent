@@ -8,7 +8,7 @@ import com.liuyanzhao.sens.user.web.config.security.jwt.JWTAuthenticationFilter;
 import com.liuyanzhao.sens.user.web.config.security.jwt.RestAccessDeniedHandler;
 import com.liuyanzhao.sens.user.web.config.security.permission.MyFilterSecurityInterceptor;
 import com.liuyanzhao.sens.user.web.config.security.validate.ImageValidateFilter;
-import com.liuyanzhao.sens.user.web.config.security.validate.SmsValidateFilter;
+//import com.liuyanzhao.sens.user.web.config.security.validate.SmsValidateFilter;
 import com.liuyanzhao.sens.user.web.util.SecurityUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,7 @@ import org.springframework.security.config.annotation.web.configurers.Expression
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * Security 核心配置类
@@ -57,8 +58,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private ImageValidateFilter imageValidateFilter;
 
-    @Autowired
-    private SmsValidateFilter smsValidateFilter;
+//    @Autowired
+//    private SmsValidateFilter smsValidateFilter;
 
 //    @Autowired
 //    private VaptchaValidateFilter vaptchaValidateFilter;
@@ -123,7 +124,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler)
                 .and()
                 // 图形验证码过滤器
-//                .addFilterBefore(imageValidateFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(imageValidateFilter, UsernamePasswordAuthenticationFilter.class)
                 // 短信验证码过滤器
 //                .addFilterBefore(smsValidateFilter, UsernamePasswordAuthenticationFilter.class)
                 // vaptcha验证码过滤器

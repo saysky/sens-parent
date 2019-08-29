@@ -1,8 +1,15 @@
 //package com.liuyanzhao.sens.user.web.config.security.validate;
 //
 //import cn.hutool.core.util.StrUtil;
+//import cn.hutool.http.HttpUtil;
 //import com.google.gson.Gson;
+//import com.liuyanzhao.sens.common.IpInfoUtil;
+//import com.liuyanzhao.sens.common.ResponseUtil;
+//import com.liuyanzhao.sens.user.api.entity.Setting;
+//import com.liuyanzhao.sens.user.api.service.SettingService;
 //import com.liuyanzhao.sens.user.web.config.properties.CaptchaProperties;
+//import com.liuyanzhao.sens.user.web.constant.SettingConstant;
+//import com.liuyanzhao.sens.user.web.vo.VaptchaSetting;
 //import lombok.extern.slf4j.Slf4j;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.context.annotation.Configuration;
@@ -17,8 +24,9 @@
 //import java.io.IOException;
 //
 ///**
+// * 手势
 // * 图形验证码过滤器
-// * @author Exrick
+// * @author liuyanzhao
 // */
 //@Slf4j
 //@Configuration
@@ -49,7 +57,7 @@
 //        if(flag){
 //            String token = request.getParameter("token");
 //
-//            Setting setting = settingService.get(SettingConstant.VAPTCHA_SETTING);
+//            Setting setting = settingService.findById(SettingConstant.VAPTCHA_SETTING);
 //            if(StrUtil.isBlank(setting.getValue())){
 //                ResponseUtil.out(response, ResponseUtil.resultMap(false,500,"系统还未配置Vaptcha验证码，请联系管理员"));
 //                return;

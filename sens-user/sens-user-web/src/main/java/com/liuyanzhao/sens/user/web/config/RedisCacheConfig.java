@@ -19,7 +19,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
- * @author Exrick
+ * @author liuyanzhao
  */
 @Slf4j
 @Configuration

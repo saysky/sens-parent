@@ -22,7 +22,7 @@ public class PermissionServiceImpl implements PermissionService {
 
 
     @Override
-    public Permission findById(Long id) {
+    public Permission findById(String id) {
         return permissionMapper.selectById(id);
     }
 
@@ -44,12 +44,12 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(String id) {
         permissionMapper.deleteById(id);
     }
 
     @Override
-    public void deleteBatchIds(List<Long> ids) {
+    public void deleteBatchIds(List<String> ids) {
         permissionMapper.deleteBatchIds(ids);
     }
 
@@ -79,7 +79,7 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    public List<Permission> findByUserId(Long userId) {
+    public List<Permission> findByUserId(String userId) {
         return permissionMapper.findByUserId(userId);
     }
 }

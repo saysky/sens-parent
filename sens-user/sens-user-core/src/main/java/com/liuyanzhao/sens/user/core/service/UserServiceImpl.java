@@ -116,7 +116,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User findById(Long id) {
+    public User findById(String id) {
         return userMapper.selectById(id);
     }
 
@@ -138,12 +138,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(String id) {
         userMapper.deleteById(id);
     }
 
     @Override
-    public void deleteBatchIds(List<Long> ids) {
+    public void deleteBatchIds(List<String> ids) {
         deleteBatchIds(ids);
     }
 }

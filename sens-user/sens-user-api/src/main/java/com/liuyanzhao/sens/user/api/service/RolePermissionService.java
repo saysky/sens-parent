@@ -20,7 +20,7 @@ public interface RolePermissionService {
      * @return
      */
     @GetMapping("/rolePermission/findById")
-    RolePermission findById(@RequestParam("id") Long id);
+    RolePermission findById(@RequestParam("id") String id);
 
     /**
      * 获取总数
@@ -55,7 +55,7 @@ public interface RolePermissionService {
      * @param id
      */
     @DeleteMapping("/rolePermission/deleteById")
-    void deleteById(@RequestParam("id") Long id);
+    void deleteById(@RequestParam("id") String id);
 
     /**
      * 批量删除
@@ -63,7 +63,7 @@ public interface RolePermissionService {
      * @param ids
      */
     @DeleteMapping("/rolePermission/deleteBatchIds")
-    void deleteBatchIds(@RequestParam("entities") List<Long> ids);
+    void deleteBatchIds(@RequestParam("ids") List<String> ids);
 
 
     /**

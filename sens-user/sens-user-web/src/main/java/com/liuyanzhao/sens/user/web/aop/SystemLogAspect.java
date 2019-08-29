@@ -1,11 +1,11 @@
 package com.liuyanzhao.sens.user.web.aop;
 
-import com.liuyanzhao.sens.common.IpInfoUtil;
 import com.liuyanzhao.sens.common.annotation.SystemLog;
 import com.liuyanzhao.sens.common.util.ObjectUtil;
 import com.liuyanzhao.sens.common.util.ThreadPoolUtil;
 import com.liuyanzhao.sens.user.api.entity.Log;
 import com.liuyanzhao.sens.user.api.service.LogService;
+import com.liuyanzhao.sens.user.web.util.IpInfoUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * Spring AOP实现日志管理
  *
- * @author Exrickx
+ * @author liuyanzhao
  */
 @Aspect
 @Component

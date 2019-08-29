@@ -23,7 +23,7 @@ public class MainController {
     @HystrixCommand(fallbackMethod = "fallback")
     public String hello() {
         //调用了服务，令该服务不可用，测试服务降级
-        userService.findById(1L);
+        userService.findById("1");
         return "Hello, I will always be there.";
     }
 

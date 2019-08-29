@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liuyanzhao.sens.user.core.mapper.MessageSendMapper">
+    <resultMap id="BaseResultMap" type="com.liuyanzhao.sens.user.api.entity.MessageSend">
+        <id column="id" property="id"/>
+        <result column="message_id" property="messageId"/>
+        <result column="user_id" property="userId"/>
+        <result column="status" property="status"/>
+        <result column="del_flag" property="delFlag"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <!--  del_flag 1已删除,0未删除  -->
+
+    <sql id="tb">`t_message`</sql>
+
+    <sql id="all_columns">
+        id, message_id, user_id, status, del_flag, create_by, create_time, update_by, update_time
+    </sql>
+
+    <sql id="all_values">
+        #{id}, #{messageId}, #{userId}, #{status}, #{delFlag}, #{createBy}, #{createTime}, #{updateBy}, #{updateTime}
+    </sql>
+
+    <delete id="deleteByMessageId">
+        DELETE FROM
+        <include refid="tb"/>
+        WHERE message_id = #{value}
+    </delete>
+
+</mapper>

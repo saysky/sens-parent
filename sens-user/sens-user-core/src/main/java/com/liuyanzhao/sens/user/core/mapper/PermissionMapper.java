@@ -57,5 +57,5 @@ public interface PermissionMapper extends BaseMapper<Permission> {
      * @param userId
      * @return
      */
-    List<Permission> findByUserId(Long userId);
+    List<Permission> findByUserId(String userId);
 }

@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * 用户角色接口实现
  *
- * @author Exrickx
+ * @author liuyanzhao
  */
 @Slf4j
 @Service
@@ -32,12 +32,12 @@ public class UserRoleServiceImpl implements UserRoleService {
     private UserMapper userMapper;
 
     @Override
-    public List<UserRole> findByRoleId(Long roleId) {
+    public List<UserRole> findByRoleId(String roleId) {
         return userRoleMapper.findByRoleId(roleId);
     }
 
     @Override
-    public List<User> findUserByRoleId(Long roleId) {
+    public List<User> findUserByRoleId(String roleId) {
 
         List<UserRole> userRoleList = userRoleMapper.findByRoleId(roleId);
         List<User> list = new ArrayList<>();
@@ -51,17 +51,17 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public void deleteByUserId(Long userId) {
+    public void deleteByUserId(String userId) {
         userRoleMapper.deleteByUserId(userId);
     }
 
     @Override
-    public List<Role> findByUserId(Long userId) {
+    public List<Role> findByUserId(String userId) {
         return userRoleMapper.findByUserId(userId);
     }
 
     @Override
-    public UserRole findById(Long id) {
+    public UserRole findById(String id) {
         return userRoleMapper.selectById(id);
     }
 
@@ -83,12 +83,12 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(String id) {
         userRoleMapper.deleteById(id);
     }
 
     @Override
-    public void deleteBatchIds(List<Long> ids) {
+    public void deleteBatchIds(List<String> ids) {
         userRoleMapper.deleteBatchIds(ids);
 
     }

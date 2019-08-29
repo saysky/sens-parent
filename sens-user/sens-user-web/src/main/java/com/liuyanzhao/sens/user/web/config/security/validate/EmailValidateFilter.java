@@ -20,7 +20,7 @@
 //
 ///**
 // * 图形验证码过滤器
-// * @author Exrick
+// * @author liuyanzhao
 // */
 //@Slf4j
 //@Configuration

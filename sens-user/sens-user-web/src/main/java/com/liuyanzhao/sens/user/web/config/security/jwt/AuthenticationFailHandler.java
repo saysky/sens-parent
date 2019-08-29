@@ -1,7 +1,7 @@
 package com.liuyanzhao.sens.user.web.config.security.jwt;
 
 import cn.hutool.core.util.StrUtil;
-import com.liuyanzhao.sens.common.ResponseUtil;
+import com.liuyanzhao.sens.common.util.ResponseUtil;
 import com.liuyanzhao.sens.user.web.config.properties.TokenProperties;
 import com.liuyanzhao.sens.user.web.exception.LoginFailLimitException;
 import lombok.extern.slf4j.Slf4j;

@@ -6,7 +6,7 @@ import lombok.Data;
 
 
 /**
- * @author Exrickx
+ * @author liuyanzhao
  */
 @Data
 @TableName("t_log")

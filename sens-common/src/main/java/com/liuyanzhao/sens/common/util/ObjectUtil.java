@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Exrickx
+ * @author liuyanzhao
  */
 public class ObjectUtil {
 

@@ -30,7 +30,7 @@ public class LogServiceImpl implements LogService {
 
 
     @Override
-    public Log findById(Long id) {
+    public Log findById(String id) {
         return logMapper.selectById(id);
     }
 
@@ -52,12 +52,12 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(String id) {
         logMapper.deleteById(id);
     }
 
     @Override
-    public void deleteBatchIds(List<Long> ids) {
+    public void deleteBatchIds(List<String> ids) {
         logMapper.deleteBatchIds(ids);
     }
 

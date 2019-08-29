@@ -78,7 +78,7 @@ public class UserController {
      * @return
      */
     @GetMapping("/{id}")
-    public Response<User> getUserById(@PathVariable("id") Long id) {
+    public Response<User> getUserById(@PathVariable("id") String id) {
         User user = userService.findById(id);
         if (user == null) {
             return Response.no("用户不存在");
@@ -229,9 +229,9 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/resetPass", method = RequestMethod.POST)
-    public Response<Object> resetPass(@RequestParam Long[] ids) {
+    public Response<Object> resetPass(@RequestParam String[] ids) {
 
-        for (Long id : ids) {
+        for (String id : ids) {
             User u = userService.findById(id);
             // 在线DEMO所需
             if ("test".equals(u.getUsername()) || "test2".equals(u.getUsername()) || "admin".equals(u.getUsername())) {
@@ -276,7 +276,7 @@ public class UserController {
     @RequestMapping(value = "/admin/edit", method = RequestMethod.POST)
     @CacheEvict(key = "#u.username")
     public Response<Object> edit(@ModelAttribute User u,
-                                 @RequestParam(required = false) Long[] roles) {
+                                 @RequestParam(required = false) String[] roles) {
 
         User old = userService.findById(u.getId());
         // 若修改了用户名
@@ -306,7 +306,7 @@ public class UserController {
         userRoleService.deleteByUserId(u.getId());
         if (roles != null && roles.length > 0) {
             //新角色
-            for (Long roleId : roles) {
+            for (String roleId : roles) {
                 UserRole ur = new UserRole();
                 ur.setRoleId(roleId);
                 ur.setUserId(u.getId());
@@ -384,7 +384,7 @@ public class UserController {
      */
     @RequestMapping(value = "/admin/add", method = RequestMethod.POST)
     public Response<Object> regist(@ModelAttribute User u,
-                                   @RequestParam(required = false) Long[] roles) {
+                                   @RequestParam(required = false) String[] roles) {
 
         if (StrUtil.isBlank(u.getUsername()) || StrUtil.isBlank(u.getPassword())) {
             return Response.no("缺少必需表单字段");
@@ -402,7 +402,7 @@ public class UserController {
         }
         if (roles != null && roles.length > 0) {
             //添加角色
-            for (Long roleId : roles) {
+            for (String roleId : roles) {
                 UserRole ur = new UserRole();
                 ur.setUserId(u.getId());
                 ur.setRoleId(roleId);
@@ -420,7 +420,7 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/admin/disable/{userId}", method = RequestMethod.POST)
-    public Response<Object> disable(@PathVariable Long userId) {
+    public Response<Object> disable(@PathVariable String userId) {
 
         User user = userService.findById(userId);
         if (user == null) {
@@ -439,7 +439,7 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/admin/enable/{userId}", method = RequestMethod.POST)
-    public Response<Object> enable(@PathVariable Long userId) {
+    public Response<Object> enable(@PathVariable String userId) {
 
         User user = userService.findById(userId);
         if (user == null) {
@@ -458,9 +458,9 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/delByIds/{ids}", method = RequestMethod.DELETE)
-    public Response<Object> delAllByIds(@PathVariable Long[] ids) {
+    public Response<Object> delAllByIds(@PathVariable String[] ids) {
 
-        for (Long id : ids) {
+        for (String id : ids) {
             User u = userService.findById(id);
             //删除相关缓存
             redisTemplate.delete("user::" + u.getUsername());
@@ -530,4 +530,20 @@ public class UserController {
         }
         return Response.yes(message);
     }
+
+    /**
+     * 解锁验证密码
+     * @param password
+     * @return
+     */
+    @RequestMapping(value = "/unlock", method = RequestMethod.POST)
+    public Response<Object> unLock(@RequestParam String password){
+
+        User u = securityUtil.getCurrUser();
+        if(!new BCryptPasswordEncoder().matches(password, u.getPassword())){
+            return Response.no("密码不正确");
+        }
+        return Response.yes();
+    }
+
 }
