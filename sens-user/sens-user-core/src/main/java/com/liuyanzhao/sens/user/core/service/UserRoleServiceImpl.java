@@ -9,8 +9,8 @@ import com.liuyanzhao.sens.user.core.mapper.UserMapper;
 import com.liuyanzhao.sens.user.core.mapper.UserRoleMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import java.util.List;
  * @author liuyanzhao
  */
 @Slf4j
-@Service
+@RestController
 @Transactional
 public class UserRoleServiceImpl implements UserRoleService {
 

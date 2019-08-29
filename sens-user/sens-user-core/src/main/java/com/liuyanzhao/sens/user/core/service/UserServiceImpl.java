@@ -1,6 +1,7 @@
 package com.liuyanzhao.sens.user.core.service;
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.liuyanzhao.sens.common.dto.QueryCondition;
@@ -77,10 +78,10 @@ public class UserServiceImpl implements UserService {
         //对指定字段查询
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         if (user != null) {
-            if (user.getUsername() != null) {
+            if (StrUtil.isNotBlank(user.getUsername() )) {
                 queryWrapper.like("username", user.getUsername());
             }
-            if (user.getNickname() != null) {
+            if (StrUtil.isNotBlank(user.getNickname())) {
                 queryWrapper.like("nickname", user.getNickname());
             }
             if (user.getStatus() != null) {
@@ -89,13 +90,13 @@ public class UserServiceImpl implements UserService {
             if (user.getType() != null) {
                 queryWrapper.eq("type", user.getType());
             }
-            if (user.getSex() != null) {
+            if (StrUtil.isNotBlank(user.getSex())) {
                 queryWrapper.eq("sex", user.getSex());
             }
-            if (user.getEmail() != null) {
+            if (StrUtil.isNotBlank(user.getEmail())) {
                 queryWrapper.eq("email", user.getEmail());
             }
-            if (user.getMobile() != null) {
+            if (StrUtil.isNotBlank(user.getMobile())) {
                 queryWrapper.eq("mobile", user.getMobile());
             }
         }
@@ -104,7 +105,7 @@ public class UserServiceImpl implements UserService {
         if (searchVo != null) {
             String startDate = searchVo.getStartDate();
             String endDate = searchVo.getEndDate();
-            if (startDate != null && endDate != null) {
+            if (StrUtil.isNotBlank(startDate) &&  StrUtil.isNotBlank(endDate)) {
                 Date start = DateUtil.parse(startDate);
                 Date end = DateUtil.parse(endDate);
                 queryWrapper.between("create_time", start, end);

@@ -25,6 +25,10 @@ public class PageUtil {
         int pageNumber = page.getPageNumber();
         int pageSize = page.getPageSize();
         String sort = page.getSort();
+        if(StrUtil.isNotBlank(sort)) {
+            //驼峰法转下划线, createTime -> create_time
+            sort = camelToUnderline(sort);
+        }
         String order = page.getOrder();
 
         if (pageNumber < 1) {
@@ -85,5 +89,30 @@ public class PageUtil {
         } else {
             return list.subList(fromIndex, toIndex);
         }
+    }
+
+    /**
+     * 驼峰转下划线
+     *
+     * @param str
+     * @return
+     */
+    private static String camelToUnderline(String str) {
+        if (str == null || str.trim().isEmpty()){
+            return "";
+        }
+        int len = str.length();
+        StringBuilder sb = new StringBuilder(len);
+        sb.append(str.substring(0, 1).toLowerCase());
+        for (int i = 1; i < len; i++) {
+            char c = str.charAt(i);
+            if (Character.isUpperCase(c)) {
+                sb.append("_");
+                sb.append(Character.toLowerCase(c));
+            } else {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
     }
 }

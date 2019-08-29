@@ -99,7 +99,7 @@ public interface UserRoleService  {
      * @return
      */
     @Cacheable(key = "#userId")
-    @GetMapping("/userRole/deleteByUserId")
+    @GetMapping("/userRole/findByUserId")
     List<Role> findByUserId(@RequestParam("userId") String userId);
 
 }
